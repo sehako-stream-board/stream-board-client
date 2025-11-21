@@ -41,7 +41,7 @@ function BoardList() {
           })}
         </Col>
       </Row>
-      <AddPageButton /> {/* Render AddPageButton here */}
+      <AddPageButton />
     </>
   );
 }
