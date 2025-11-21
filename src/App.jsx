@@ -1,12 +1,18 @@
 import { Container } from 'react-bootstrap';
+import BoardList from './page/BoardList';
 import Nav from './static/Nav';
 
 function App() {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Nav></Nav>
-      <Container fluid className="mt-3"></Container>
-    </>
+      <Container
+        className="position-relative"
+        style={{ height: '100%', overflowY: 'auto' }}
+      >
+        <BoardList></BoardList>
+      </Container>
+    </div>
   );
 }
 
