@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap';
-import BoardWrite from './page/BoardWrite';
+import BoardDetail from './page/BoardDetail';
 import Nav from './static/Nav';
 
 function App() {
@@ -10,8 +10,7 @@ function App() {
         className="position-relative mt-5"
         style={{ height: '100%', overflowY: 'auto' }}
       >
-        {/* <BoardList></BoardList> */}
-        <BoardWrite></BoardWrite>
+        <BoardDetail></BoardDetail>
       </Container>
     </div>
   );
