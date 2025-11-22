@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { postApi } from '../api/postApi';
 
 function BoardDetail() {
+  const navigate = useNavigate();
+
   const { no } = useParams();
   // eslint-disable-next-line no-unused-vars
   const [boardInfo, setBoardInfo] = useState({
@@ -12,6 +14,11 @@ function BoardDetail() {
     content: '',
     createdAt: '',
   });
+
+  const deletePost = () => {
+    postApi.removePost(no);
+    navigate('/');
+  };
 
   useEffect(() => {
     postApi
@@ -41,7 +48,7 @@ function BoardDetail() {
               style={{ fontSize: '0.8em' }}
             >
               <span>수정&nbsp;&nbsp;</span>
-              <span>삭제</span>
+              <span onClick={deletePost}>삭제</span>
             </Col>
           </Row>
         </Col>

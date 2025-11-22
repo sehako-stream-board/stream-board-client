@@ -10,4 +10,6 @@ export const postApi = {
     }),
 
   getPostDetail: (no) => api.get(`/post/${no}`),
+
+  removePost: (no) => api.delete(`/post/${no}`),
 };
