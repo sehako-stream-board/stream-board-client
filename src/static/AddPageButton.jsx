@@ -1,4 +1,4 @@
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 function AddPageButton() {
@@ -9,17 +9,24 @@ function AddPageButton() {
   };
 
   return (
-    <Row>
-      <Col className="position-absolute bottom-0 end-0 ms-3 mt-3 mb-3 me-1 text-end">
-        <Button
-          variant="dark"
-          className="align-items-center justify-content-center rounded-4 text-center bg-dark"
-          onClick={navigateWritePage}
-        >
-          <span className="fs-1 fw-bold lh-1">+</span>
-        </Button>
-      </Col>
-    </Row>
+    <div
+      style={{
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2rem',
+        zIndex: 1050,
+      }}
+      className="text-end"
+    >
+      <Button
+        variant="dark"
+        className="align-items-center justify-content-center rounded-4 text-center bg-dark shadow"
+        style={{ width: '64px', height: '64px' }}
+        onClick={navigateWritePage}
+      >
+        <span className="fs-1 fw-bold lh-1">+</span>
+      </Button>
+    </div>
   );
 }
 
