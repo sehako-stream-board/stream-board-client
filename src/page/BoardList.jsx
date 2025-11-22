@@ -1,15 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { postApi } from '../api/postApi';
 import AddPageButton from '../static/AddPageButton'; // Import AddPageButton
 
 function BoardList() {
   // eslint-disable-next-line no-unused-vars
-  const [posts, setPost] = useState([
-    { no: 1, title: '첫 번째 게시글', date: '2024-01-01' },
-    { no: 2, title: '게시글', date: '2024-01-01' },
-    { no: 3, title: '게시글', date: '2024-01-01' },
-  ]);
+  const [size, setSize] = useState(10);
+
+  // eslint-disable-next-line no-unused-vars
+  const [cursor, setCursor] = useState(0);
+
+  // eslint-disable-next-line no-unused-vars
+  const [posts, setPost] = useState([]);
+
+  useEffect(() => {
+    postApi
+      .getPostList(cursor, size)
+      .then((response) => response.data)
+      .then((response) => {
+        const convertedData = response.result.map((target) => {
+          const createdAtDate = target.createdAt
+            ? target.createdAt.split('T')[0]
+            : '';
+          return {
+            ...target,
+            createdAt: createdAtDate,
+          };
+        });
+        setPost([...posts, ...convertedData]);
+      });
+  }, []);
 
   return (
     <>
@@ -26,15 +47,15 @@ function BoardList() {
           )}
           {posts.map((post) => {
             return (
-              <Link to={`/post/${post.no}`}>
-                <Row key={post.no} className="mt-3">
+              <Link key={post.no} to={`/post/${post.no}`}>
+                <Row className="mt-3">
                   <Col className="border ms-2 me-2">
                     <Row className="p-2">
                       <Col xs={8} className="text-secondary">
                         {post.title}
                       </Col>
                       <Col xs={4} className="text-center text-dark">
-                        {post.date}
+                        {post.createdAt}
                       </Col>
                     </Row>
                   </Col>
