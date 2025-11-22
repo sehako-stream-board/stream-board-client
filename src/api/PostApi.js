@@ -11,5 +11,8 @@ export const postApi = {
 
   getPostDetail: (no) => api.get(`/post/${no}`),
 
+  patchPost: (no, title, content) =>
+    api.patch(`/post/${no}`, { title: title, content: content }),
+
   removePost: (no) => api.delete(`/post/${no}`),
 };

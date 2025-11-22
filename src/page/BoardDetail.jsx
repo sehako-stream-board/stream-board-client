@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { postApi } from '../api/postApi';
 
 function BoardDetail() {
@@ -47,7 +47,9 @@ function BoardDetail() {
               className="text-secondary text-opacity-50 pt-1 text-end"
               style={{ fontSize: '0.8em' }}
             >
-              <span>수정&nbsp;&nbsp;</span>
+              <Link to={`/post/${boardInfo.no}/edit`}>
+                <span>수정&nbsp;&nbsp;</span>
+              </Link>
               <span onClick={deletePost}>삭제</span>
             </Col>
           </Row>
