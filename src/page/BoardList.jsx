@@ -104,14 +104,24 @@ function BoardList() {
           )}
           {posts.map((post) => {
             return (
-              <Link key={post.no} to={`/post/${post.no}`}>
+              <Link
+                key={post.no}
+                to={`/post/${post.no}`}
+                className="link-underline link-underline-opacity-0"
+              >
                 <Row className="mt-3">
                   <Col className="border ms-2 me-2">
                     <Row className="p-2">
                       <Col xs={8} className="text-secondary">
                         {post.title}
                       </Col>
-                      <Col xs={4} className="text-center text-dark">
+                      <Col
+                        xs={4}
+                        className="text-center text-dark pt-2 text-secondary-opacity-50"
+                        style={{
+                          fontSize: '0.7em',
+                        }}
+                      >
                         {post.createdAt}
                       </Col>
                     </Row>
