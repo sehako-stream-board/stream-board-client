@@ -8,7 +8,7 @@ function BoardList() {
   const size = 20;
 
   const [cursor, setCursor] = useState(0);
-  const [posts, setPost] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,7 +50,7 @@ function BoardList() {
         });
 
         // [수정된 부분] 중복 제거 로직 추가
-        setPost((prevPosts) => {
+        setPosts((prevPosts) => {
           // 1. 기존 포스트들의 ID(no)를 Set으로 만듭니다 (검색 속도 최적화)
           const existingIds = new Set(prevPosts.map((p) => p.no));
 
@@ -67,11 +67,10 @@ function BoardList() {
   }, [cursor, hasMore, size, isLoading]);
 
   useEffect(() => {
-    console.log('아니 뭐임');
     // eslint-disable-next-line react-hooks/set-state-in-effect
     loadPosts();
 
-    return () => setPost([]);
+    return () => setPosts([]);
   }, []);
 
   useEffect(() => {
